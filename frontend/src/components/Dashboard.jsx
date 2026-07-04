@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef, useMemo } from "react";
-import { Play, Pause, RotateCcw, ArrowLeft, Download, FastForward, Activity } from "lucide-react";
+import { Play, Pause, RotateCcw, ArrowLeft, Download, FastForward, Activity, Github } from "lucide-react";
 import { api } from "../services/api";
 import { StatsPanel } from "./StatsPanel";
 import { SimulationCanvas } from "./SimulationCanvas";
@@ -322,9 +322,10 @@ export const Dashboard = ({ initialSettings, onBack }) => {
             href="https://github.com/tharunprinz"
             target="_blank"
             rel="noopener noreferrer"
-            className="text-purple-400 hover:text-white transition-colors font-semibold flex items-center gap-1 text-sm mr-2"
+            className="text-gray-400 hover:text-white transition-colors flex items-center mr-2"
+            title="GitHub Profile"
           >
-            Tharun R
+            <Github className="w-4 h-4" />
           </a>
         </div>
       </header>

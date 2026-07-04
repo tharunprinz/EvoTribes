@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Brain, Sparkles, ChevronRight, Settings, Cpu } from "lucide-react";
+import { Brain, Sparkles, ChevronRight, Settings, Cpu, Github } from "lucide-react";
 
 const OLLAMA_MODELS = ["qwen3:4b", "llama3.2:3b", "gemma3:4b"];
 
@@ -52,9 +52,10 @@ export const LandingPage = ({ onStart }) => {
             href="https://github.com/tharunprinz"
             target="_blank"
             rel="noopener noreferrer"
-            className="text-purple-400 hover:text-white transition-colors font-semibold flex items-center gap-1"
+            className="text-gray-400 hover:text-white transition-colors flex items-center"
+            title="GitHub Profile"
           >
-            Tharun R
+            <Github className="w-4 h-4" />
           </a>
         </div>
       </nav>
