@@ -382,11 +382,6 @@ Contributions are welcome! Please follow these steps:
 - **Matplotlib** — Matplotlib static charts packaging
 - **Requests** — Sync/Async Ollama requests
 
----
-
-## License
-
-This project is licensed under the **MIT License**.
 
 ---
 
