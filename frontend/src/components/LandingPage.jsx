@@ -212,16 +212,18 @@ export const LandingPage = ({ onStart }) => {
 
       <footer className="w-full text-center text-xs text-gray-500 mt-12 z-10 max-w-6xl mx-auto border-t border-white/5 pt-4 flex flex-col sm:flex-row justify-between items-center gap-2">
         <span>EvoTribes — Genetic Algorithms + Local Ollama Personality Engine</span>
-        <span>
-          Build by{" "}
+        <span className="flex items-center gap-2">
+          Built by{" "}
           <a
             href="https://github.com/tharunprinz"
             target="_blank"
             rel="noopener noreferrer"
-            className="text-purple-400 hover:text-purple-300 transition-colors font-semibold"
+            className="text-gray-400 hover:text-white transition-colors flex items-center"
+            title="GitHub: tharunprinz"
           >
-            Tharun R and Team
+            <Github className="w-4 h-4" />
           </a>
+          &amp; Team
         </span>
       </footer>
     </div>
