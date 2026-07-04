@@ -59,10 +59,10 @@ classDiagram
         +string current_action
         +Dict genes
         +chromosome() List
-        +select_action(nearby_agents, nearby_resources, on_resource, in_safe_zone, llm_mode) string
-        +consume_energy(amount)
-        +take_damage(amount)
-        +update_fitness(fitness_fn)
+        +select_action() string
+        +consume_energy(float amount)
+        +take_damage(float amount)
+        +update_fitness()
     }
 
     class World {
@@ -71,30 +71,30 @@ classDiagram
         +Set obstacles
         +Set safe_zones
         +Dict resources
-        +initialize_grid(num_resources, num_obstacles, num_safe_zones)
+        +initialize_grid(int num_resources, int num_obstacles, int num_safe_zones)
         +regenerate_resources()
-        +is_passable(pos) bool
-        +is_safe_zone(pos) bool
-        +has_active_resource(pos) bool
-        +collect_resource(pos) float
-        +get_valid_neighbors(pos) List
+        +is_passable(Tuple pos) bool
+        +is_safe_zone(Tuple pos) bool
+        +has_active_resource(Tuple pos) bool
+        +collect_resource(Tuple pos) float
+        +get_valid_neighbors(Tuple pos) List
         +get_random_passable_position() Tuple
     }
 
     class FitnessEvaluator {
         +Dict weights
-        +evaluate(agent) float
-        +update_weights(new_weights)
+        +evaluate(Agent agent) float
+        +update_weights(Dict new_weights)
     }
 
     class GeneticAlgorithm {
         +float mutation_rate
         +int tournament_size
         +int elitism_count
-        +select_parent(population) Agent
-        +crossover(parent_a, parent_b) Dict
-        +mutate(genes) Dict
-        +generate_next_generation(old_population, next_id_start, w, h) List
+        +select_parent(List population) Agent
+        +crossover(Agent parent_a, Agent parent_b) Dict
+        +mutate(Dict genes) Dict
+        +generate_next_generation() List
     }
 
     class SimulationEngine {
@@ -107,17 +107,17 @@ classDiagram
         +bool llm_mode
         +initialize_simulation()
         +tick() Dict
-        +resolve_agent_action(agent, action, nearby_agents, nearby_resources)
+        +resolve_agent_action()
         +trigger_natural_disaster()
         +end_generation()
         +compile_generation_stats() Dict
         +export_current_stats_to_csv()
     }
 
-    SimulationEngine "1" *-- "1" World : manages
-    SimulationEngine "1" *-- "many" Agent : manages
-    SimulationEngine "1" *-- "1" GeneticAlgorithm : breeds
-    SimulationEngine "1" *-- "1" FitnessEvaluator : grades
+    SimulationEngine *-- World : manages
+    SimulationEngine *-- Agent : manages
+    SimulationEngine *-- GeneticAlgorithm : breeds
+    SimulationEngine *-- FitnessEvaluator : grades
     GeneticAlgorithm ..> Agent : processes
     FitnessEvaluator ..> Agent : grades
 ```
