@@ -1,4 +1,16 @@
-const API_BASE = "http://localhost:8000";
+const getApiBase = () => {
+  // If Vite environment variable is set, use it
+  if (import.meta.env.VITE_API_BASE) {
+    return import.meta.env.VITE_API_BASE;
+  }
+  // If window is defined (in browser), fallback to port 8000 on the current host
+  if (typeof window !== "undefined") {
+    return `${window.location.protocol}//${window.location.hostname}:8000`;
+  }
+  return "http://localhost:8000";
+};
+
+const API_BASE = getApiBase();
 
 export const api = {
   start: async ({ scenario, mode, popSize, maxGen, ticksPerGen, decisionMode, ollamaModel }) => {
@@ -37,6 +49,8 @@ export const api = {
   },
 
   getWebSocket: () => {
-    return new WebSocket(`ws://localhost:8000/ws/simulation`);
+    // Dynamically map http/https to ws/wss
+    const wsUrl = API_BASE.replace(/^http/, "ws");
+    return new WebSocket(`${wsUrl}/ws/simulation`);
   }
 };
